@@ -60,7 +60,7 @@
         ]
     }
     let scotland_tax_2425 = {
-        'tax_free': 12570,
+        'tax_free': 1257000,
         'tax_free_taper': 10000000,
         'rates': [
             {
