@@ -1,3 +1,9 @@
+<style>
+    table caption {
+        font-weight: bold;
+        font-size: larger;
+    }
+</style>
 <script>
 export let rates = {'rates': [], 'tax_free': 0, 'tax_free_taper': 0}
 export let salaryp = 0

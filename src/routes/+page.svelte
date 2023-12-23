@@ -190,7 +190,7 @@
 
     <div style="text-align: center">
     {#each ['Yearly', "Monthly", "Weekly", 'Daily'] as period_t}
-    <label style="padding: 1em; display: inline-block">
+    <label style="padding: 0.5em; display: inline-block">
         <input type="radio" name="period" value={period_t} bind:group={period}>
         {period_t}
     </label>
