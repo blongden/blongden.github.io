@@ -3,8 +3,8 @@ export let rates = {'rates': [], 'tax_free': 0, 'tax_free_taper': 0}
 export let salaryp = 0
 let taxes = []
 export let total = 0
-export let currency
 export let hidden = false
+export let fc
 
 function calculateTaxableValue(salaryp, taxfreelossp, rate) {
     var i = { ...rate }
@@ -55,20 +55,20 @@ rates.rates.forEach(rate => {
 </tr>
 <tr>
     <td>0%</td>
-    <td>To {currency.format((rates.tax_free - taxfreelossp)/100)}</td>
+    <td>To {fc(rates.tax_free - taxfreelossp)}</td>
     <td>£0.00</td>
 </tr>
 {#each taxes as tax}
 <tr>
     <td>{tax.rate}%</td>
-    <td>{#if tax.upper === undefined || tax.upper < tax.lower}0{:else}{currency.format(tax.lower/100)} to {currency.format(tax.upper/100)}{/if}</td>
-    <td>{#if tax.tax === undefined}0{:else}{currency.format(tax.tax/100)}{/if}</td>
+    <td>{#if tax.upper === undefined || tax.upper < tax.lower}0{:else}{fc(tax.lower)} to {fc(tax.upper)}{/if}</td>
+    <td>{#if tax.tax === undefined}0{:else}{fc(tax.tax)}{/if}</td>
 </tr>
 {/each}
 <tr>
     <td>Total</td>
     <td></td>
-    <td>{currency.format(total/100)}</td>
+    <td>{fc(total)}</td>
 </tr>
 </table>
 {/if}

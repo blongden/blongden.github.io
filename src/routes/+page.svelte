@@ -129,7 +129,7 @@
     let uk_ni_2324_total
     let uk_ni_1pc_2425_total
 
-    let period = "yearly"
+    let period = "Yearly"
 
     let GBP = new Intl.NumberFormat('en-GB', {
         style: 'currency',
@@ -140,12 +140,18 @@
         salary = salary_t
     }
 
-    function fc(valuep, period) {
+    function fc(valuep) {
         let chunks = 1
         switch(period) {
-            case "monthly": chunks = 12
-            case "weekly": chunks = 52
-            case "daily": chunks = 365
+            case "Monthly": 
+                chunks = 12;
+                break;
+            case "Weekly": 
+                chunks = 52;
+                break;
+            case "Daily":
+                chunks = 365;
+                break;
         }
         return GBP.format(Math.abs(valuep/100)/chunks)
     }
@@ -158,7 +164,8 @@
     <button on:click={setSalary}>Calculate</button>
 </div>
 <div class="container">
-{#if (salary > 0)} 
+{#if (salary > 0)}
+    {#key [period, salary]}
     <p>
         {#if scotland_tax_2425_total > 0}
             You will pay {fc(scotland_tax_2425_total - uk_tax_2425_total)} {#if scotland_tax_2425_total - uk_tax_2425_total > 0}more{:else}less{/if} tax
@@ -169,13 +176,6 @@
             Your income is under the current tax free allowance. You will not pay tax in Scotland or in the rest of the UK.
         {/if}
     </p>
-
-    <!-- {#if salary > 100000}
-    <p>
-        Your salary is over £100,000. For every £2 you earn over £100k you lose £1 of your tax free allowance, which
-        is then taxed at the higher rate (resulting in a marginal rate of up to 68%) until you earn £125,140.
-    </p>
-    {/if} -->
 
     <p>
         You will pay {fc(uk_ni_2425_total)} in National Insurance, {fc(uk_ni_2425_total - uk_ni_2324_total)} {#if uk_ni_2425_total - uk_ni_2324_total > 0}more{:else}less{/if}
@@ -188,14 +188,22 @@
         {fc((salary)-(scotland_tax_2425_total - scotland_tax_1pc_2425_total)-(uk_ni_2425_total - uk_ni_1pc_2425_total))} from your net salary.
     </p>
 
-    {#key salary}
-    <Calc bind:total={scotland_tax_1pc_2425_total} rates={scotland_tax_2425} salaryp={salary * 99} currency={GBP} hidden=true>99% Scotland</Calc>
-    <Calc bind:total={scotland_tax_2425_total} rates={scotland_tax_2425} salaryp={salary * 100} currency={GBP}>Scotland 24/25</Calc>
-    <Calc bind:total={scotland_tax_2324_total} rates={scotland_tax_2324} salaryp={salary * 100} currency={GBP}>Scotland 23/24</Calc>
-    <Calc bind:total={uk_tax_2425_total} rates={uk_tax_2425} salaryp={salary * 100} currency={GBP}>UK 24/25</Calc>
-    <Calc bind:total={uk_ni_2425_total} rates={uk_ni_2425} salaryp={salary * 100} currency={GBP}>UK National Insurance 24/25</Calc>
-    <Calc bind:total={uk_ni_1pc_2425_total} rates={uk_ni_2425} salaryp={salary * 99} currency={GBP} hidden=true>99% UK National Insurance 24/25</Calc>
-    <Calc bind:total={uk_ni_2324_total} rates={uk_ni_2324} salaryp={salary * 100} currency={GBP}>UK National Insurance 23/24</Calc>
+    <div style="text-align: center">
+    {#each ['Yearly', "Monthly", "Weekly", 'Daily'] as period_t}
+    <label style="padding: 1em; display: inline-block">
+        <input type="radio" name="period" value={period_t} bind:group={period}>
+        {period_t}
+    </label>
+    {/each}
+    </div>
+
+    <Calc bind:total={scotland_tax_1pc_2425_total} rates={scotland_tax_2425} salaryp={salary * 99} fc={fc} hidden=true>99% Scotland</Calc>
+    <Calc bind:total={scotland_tax_2425_total} rates={scotland_tax_2425} salaryp={salary * 100} fc={fc}>Scotland 24/25</Calc>
+    <Calc bind:total={scotland_tax_2324_total} rates={scotland_tax_2324} salaryp={salary * 100} fc={fc}>Scotland 23/24</Calc>
+    <Calc bind:total={uk_tax_2425_total} rates={uk_tax_2425} salaryp={salary * 100} fc={fc}>UK 24/25</Calc>
+    <Calc bind:total={uk_ni_2425_total} rates={uk_ni_2425} salaryp={salary * 100} fc={fc}>UK National Insurance 24/25</Calc>
+    <Calc bind:total={uk_ni_1pc_2425_total} rates={uk_ni_2425} salaryp={salary * 99} fc={fc} hidden=true>99% UK National Insurance 24/25</Calc>
+    <Calc bind:total={uk_ni_2324_total} rates={uk_ni_2324} salaryp={salary * 100} fc={fc}>UK National Insurance 23/24</Calc>
     {/key}
 {/if}
     <p>Made in 🏴󠁧󠁢󠁳󠁣󠁴󠁿 by <a href="https://x.com/blongden">@blongden</a>. This site proudly uses no cookies, collects no data and does not track you at all.</p>
