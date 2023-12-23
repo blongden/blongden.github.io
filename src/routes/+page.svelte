@@ -198,9 +198,9 @@
     </div>
 
     <Calc bind:total={scotland_tax_1pc_2425_total} rates={scotland_tax_2425} salaryp={salary * 99} fc={fc} hidden=true>99% Scotland</Calc>
-    <Calc bind:total={scotland_tax_2425_total} rates={scotland_tax_2425} salaryp={salary * 100} fc={fc}>Scotland 24/25</Calc>
-    <Calc bind:total={scotland_tax_2324_total} rates={scotland_tax_2324} salaryp={salary * 100} fc={fc}>Scotland 23/24</Calc>
-    <Calc bind:total={uk_tax_2425_total} rates={uk_tax_2425} salaryp={salary * 100} fc={fc}>UK 24/25</Calc>
+    <Calc bind:total={scotland_tax_2425_total} rates={scotland_tax_2425} salaryp={salary * 100} fc={fc}>Scotland Income Tax 24/25</Calc>
+    <Calc bind:total={scotland_tax_2324_total} rates={scotland_tax_2324} salaryp={salary * 100} fc={fc}>Scotland Income Tax 23/24</Calc>
+    <Calc bind:total={uk_tax_2425_total} rates={uk_tax_2425} salaryp={salary * 100} fc={fc}>UK Income Tax 24/25</Calc>
     <Calc bind:total={uk_ni_2425_total} rates={uk_ni_2425} salaryp={salary * 100} fc={fc}>UK National Insurance 24/25</Calc>
     <Calc bind:total={uk_ni_1pc_2425_total} rates={uk_ni_2425} salaryp={salary * 99} fc={fc} hidden=true>99% UK National Insurance 24/25</Calc>
     <Calc bind:total={uk_ni_2324_total} rates={uk_ni_2324} salaryp={salary * 100} fc={fc}>UK National Insurance 23/24</Calc>
