@@ -185,9 +185,9 @@
     <p> Your net take home salary will be {fc(salary - scotland_tax_2425_total - uk_ni_2425_total)} before any further deductions.</p>
 
     <p>
-        A 1% increase in salary sacrifice or pension contribution would be worth {fc(salary)}, save you {fc(scotland_tax_2425_total - scotland_tax_1pc_2425_total)}
+        A 1% increase in salary sacrifice or pension contribution would be worth {fc(salary*0.01)}, save you {fc(scotland_tax_2425_total - scotland_tax_1pc_2425_total)}
         in tax, {fc(uk_ni_2425_total - uk_ni_1pc_2425_total)} in National Insurance, and cost
-        {fc((salary)-(scotland_tax_2425_total - scotland_tax_1pc_2425_total)-(uk_ni_2425_total - uk_ni_1pc_2425_total))} from your net salary.
+        {fc((salary * 0.01)-(scotland_tax_2425_total - scotland_tax_1pc_2425_total)-(uk_ni_2425_total - uk_ni_1pc_2425_total))} from your net salary.
     </p>
 
     <div style="text-align: center">
