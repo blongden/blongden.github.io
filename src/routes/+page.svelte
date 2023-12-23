@@ -119,7 +119,7 @@
     }
 
     let salary = 0
-    let salary_t = 0
+    let salary_t = ""
 
     let scotland_tax_2425_total 
     let scotland_tax_2324_total 
@@ -128,6 +128,8 @@
     let uk_ni_2425_total
     let uk_ni_2324_total
     let uk_ni_1pc_2425_total
+
+    let period = "yearly"
 
     let GBP = new Intl.NumberFormat('en-GB', {
         style: 'currency',
@@ -138,15 +140,20 @@
         salary = salary_t
     }
 
-    function fc(valuep) {
-        return GBP.format(Math.abs(valuep/100))
+    function fc(valuep, period) {
+        let chunks = 1
+        switch(period) {
+            case "monthly": chunks = 12
+            case "weekly": chunks = 52
+            case "daily": chunks = 365
+        }
+        return GBP.format(Math.abs(valuep/100)/chunks)
     }
 </script>
 <div class="container">
     <h1>Tax Calculator 24/25</h1>
     <label for="salary">
-        Salary
-        <input id="salary" bind:value={salary_t}/>
+        <input id="salary" bind:value={salary_t} placeholder="Enter your annual salary"/>
     </label>
     <button on:click={setSalary}>Calculate</button>
 </div>
@@ -191,5 +198,5 @@
     <Calc bind:total={uk_ni_2324_total} rates={uk_ni_2324} salaryp={salary * 100} currency={GBP}>UK National Insurance 23/24</Calc>
     {/key}
 {/if}
-    <p>Made in 🏴󠁧󠁢󠁳󠁣󠁴󠁿 by <a href="https://x.com/blongden">@blongden</a></p>
+    <p>Made in 🏴󠁧󠁢󠁳󠁣󠁴󠁿 by <a href="https://x.com/blongden">@blongden</a>. This site proudly uses no cookies, collects no data and does not track you at all.</p>
 </div>
