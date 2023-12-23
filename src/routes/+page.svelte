@@ -137,7 +137,7 @@
     });
 
     function setSalary() {
-        salary = salary_t
+        salary = salary_t * 100
     }
 
     function fc(valuep) {
@@ -182,6 +182,8 @@
         than last year.
     </p>
 
+    <p> Your net take home salary will be {fc(salary - scotland_tax_2425_total - uk_ni_2425_total)} before any further deductions.</p>
+
     <p>
         A 1% increase in salary sacrifice or pension contribution would be worth {fc(salary)}, save you {fc(scotland_tax_2425_total - scotland_tax_1pc_2425_total)}
         in tax, {fc(uk_ni_2425_total - uk_ni_1pc_2425_total)} in National Insurance, and cost
@@ -197,13 +199,13 @@
     {/each}
     </div>
 
-    <Calc bind:total={scotland_tax_1pc_2425_total} rates={scotland_tax_2425} salaryp={salary * 99} fc={fc} hidden=true>99% Scotland</Calc>
-    <Calc bind:total={scotland_tax_2425_total} rates={scotland_tax_2425} salaryp={salary * 100} fc={fc}>Scotland Income Tax 24/25</Calc>
-    <Calc bind:total={scotland_tax_2324_total} rates={scotland_tax_2324} salaryp={salary * 100} fc={fc}>Scotland Income Tax 23/24</Calc>
-    <Calc bind:total={uk_tax_2425_total} rates={uk_tax_2425} salaryp={salary * 100} fc={fc}>UK Income Tax 24/25</Calc>
-    <Calc bind:total={uk_ni_2425_total} rates={uk_ni_2425} salaryp={salary * 100} fc={fc}>UK National Insurance 24/25</Calc>
-    <Calc bind:total={uk_ni_1pc_2425_total} rates={uk_ni_2425} salaryp={salary * 99} fc={fc} hidden=true>99% UK National Insurance 24/25</Calc>
-    <Calc bind:total={uk_ni_2324_total} rates={uk_ni_2324} salaryp={salary * 100} fc={fc}>UK National Insurance 23/24</Calc>
+    <Calc bind:total={scotland_tax_1pc_2425_total} rates={scotland_tax_2425} salaryp={salary * 0.99} fc={fc} hidden=true>99% Scotland</Calc>
+    <Calc bind:total={scotland_tax_2425_total} rates={scotland_tax_2425} salaryp={salary} fc={fc}>Scotland Income Tax 24/25</Calc>
+    <Calc bind:total={scotland_tax_2324_total} rates={scotland_tax_2324} salaryp={salary} fc={fc}>Scotland Income Tax 23/24</Calc>
+    <Calc bind:total={uk_tax_2425_total} rates={uk_tax_2425} salaryp={salary} fc={fc}>UK Income Tax 24/25</Calc>
+    <Calc bind:total={uk_ni_2425_total} rates={uk_ni_2425} salaryp={salary} fc={fc}>UK National Insurance 24/25</Calc>
+    <Calc bind:total={uk_ni_1pc_2425_total} rates={uk_ni_2425} salaryp={salary * 0.99} fc={fc} hidden=true>99% UK National Insurance 24/25</Calc>
+    <Calc bind:total={uk_ni_2324_total} rates={uk_ni_2324} salaryp={salary} fc={fc}>UK National Insurance 23/24</Calc>
     {/key}
 {/if}
     <p>Made in 🏴󠁧󠁢󠁳󠁣󠁴󠁿 by <a href="https://x.com/blongden">@blongden</a>. This site proudly uses no cookies, collects no data and does not track you at all.</p>
