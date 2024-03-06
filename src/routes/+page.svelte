@@ -4,7 +4,7 @@
         'tax_free': 1257000,
         'rates': [
             {
-                'rate': 10,
+                'rate': 8,
                 'lower': 1257000,
                 'upper': 5026800
             },
@@ -18,7 +18,7 @@
         'tax_free': 1257000,
         'rates': [
             {
-                'rate': 12,
+                'rate': 11.5,
                 'lower': 1257000,
                 'upper': 5026800
             },
