@@ -32,7 +32,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Setup Pages
-        uses: actions/configure-pages@v4
+        uses: actions/configure-pages@v5
       - name: Install
         run: npm install
       - name: Build
@@ -44,4 +44,4 @@ jobs:
           path: 'build'
       - name: Deploy to GitHub Pages
         id: deployment
-        ses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v4
